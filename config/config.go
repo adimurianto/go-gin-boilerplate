@@ -16,15 +16,17 @@ func SetupConfig() error {
 	var configuration *Configuration
 	viper.AutomaticEnv()
 
-	viper.SetConfigFile(".env")
+	viper.SetConfigName(".env")
+	viper.SetConfigType("env")
+	viper.AddConfigPath(".")
+
 	if err := viper.ReadInConfig(); err != nil {
-		logger.Errorf("Error to reading config file, %s", err)
-		return err
+		logger.Warnf("Tidak ada file .env, menggunakan environment variables")
 	}
 
 	err := viper.Unmarshal(&configuration)
 	if err != nil {
-		logger.Errorf("error to decode, %v", err)
+		logger.Errorf("Error saat decode config, %v", err)
 		return err
 	}
 
