@@ -48,7 +48,7 @@ Here are the folders to consider when adding a new endpoint
 ├── models/
 │   ├── user_model.go
 │   └── ...
-├── routes/
+├── routers/
 |   ├── groups/
 │       ├── user.go
 |       └── ...
