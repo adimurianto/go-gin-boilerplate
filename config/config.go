@@ -11,7 +11,6 @@ type Configuration struct {
 	Database DatabaseConfiguration
 }
 
-// SetupConfig configuration
 func SetupConfig() error {
 	var configuration *Configuration
 	viper.AutomaticEnv()
@@ -21,12 +20,12 @@ func SetupConfig() error {
 	viper.AddConfigPath(".")
 
 	if err := viper.ReadInConfig(); err != nil {
-		logger.Warnf("Tidak ada file .env, menggunakan environment variables")
+		logger.Errorf("Error to reading config file, %s", err)
 	}
 
 	err := viper.Unmarshal(&configuration)
 	if err != nil {
-		logger.Errorf("Error saat decode config, %v", err)
+		logger.Errorf("error to decode, %v", err)
 		return err
 	}
 
