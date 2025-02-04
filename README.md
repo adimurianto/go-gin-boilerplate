@@ -17,6 +17,12 @@
 
 - Create file **.env** base on file **.env.example** and adjust the contents of the variable
 
+-  Init for generate Swagger API documentation
+
+```bash
+  swag init
+```
+
 -  Init for live reload
 
 ```bash
