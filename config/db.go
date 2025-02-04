@@ -2,6 +2,7 @@ package config
 
 import (
 	"fmt"
+	"log"
 
 	"github.com/spf13/viper"
 )
@@ -14,6 +15,15 @@ type DatabaseConfiguration struct {
 	Host     string
 	Port     string
 	LogMode  bool
+}
+
+func init() {
+	viper.AutomaticEnv()
+
+	viper.SetConfigFile(".env")
+	if err := viper.ReadInConfig(); err != nil {
+		log.Println("Tidak ada file .env, menggunakan environment variables")
+	}
 }
 
 func DbConfiguration() string {
